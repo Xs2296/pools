@@ -4,7 +4,7 @@
 DB_HOST = 'localhost'
 DB_PORT = 3306
 DB_USER = 'root'
-DB_PWD = 'fIsE5OSU'
+DB_PWD = 'root'
 DB_NAME = 'pools'
 TABLE_NAME = 'proxys'
 

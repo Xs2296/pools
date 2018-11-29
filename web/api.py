@@ -19,18 +19,19 @@ def index():
 def getOne():
     proxys = Pools.select().where(Pools.status == 1)
     proxy = random.choice(proxys)
-    return json.dumps({'http': proxy.http, 'host': proxy.host, 'port': proxy.port})
+    return json.dumps(
+        {'code': 200, 'msg': 'success', 'datas': {'http': proxy.http, 'host': proxy.host, 'port': proxy.port}})
 
 
 @app.route('/all', methods=['GET'])
 def getAll():
-    proxys = Pools.select().where(Pools.status == 1).order_by(Pools.check_time).limit(100).distinct()
+    proxys = Pools.select().where(Pools.status == 1).order_by(Pools.check_time).limit(10).distinct()
     res_list = []
     for k, p in enumerate(proxys):
         keys = ['http', 'host', 'port']
         datas = [p.http, p.host, p.port]
         res_list.append(dict(zip(keys, list(datas))))
-    return json.dumps(res_list)
+    return json.dumps({'code': 200, 'msg': 'success', 'datas': res_list})
 
 
 def start_server():
